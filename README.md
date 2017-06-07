@@ -5,10 +5,10 @@
 First, build it:
 
 ```
-> dotnet restore
+$ dotnet restore
 ```
 Then, run:
 
 ```
-> dotnet run
+$ dotnet run
 ```
