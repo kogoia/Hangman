@@ -9,7 +9,6 @@ namespace Hangman
         private readonly Stream _input;
         private readonly Stream _output;
         private readonly int _max;
-
         private static readonly string[] WORDS = {
             "simplicity", "equality", "grandmother",
             "neighborhood", "relationship", "mathematics",
@@ -22,6 +21,7 @@ namespace Hangman
             this._output = output;
             this._max = max;
         }
+
         public static void Main(string[] args)
         {
             new Program(
