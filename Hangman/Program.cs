@@ -14,23 +14,16 @@ namespace Hangman
             "neighborhood", "relationship", "mathematics",
             "university", "explanation"
         };
-
         public Program(Stream input, Stream output, int max)
         {
             this._input = input;
             this._output = output;
             this._max = max;
         }
-
         public static void Main(string[] args)
         {
-            new Program(
-                Console.OpenStandardInput(), 
-                Console.OpenStandardOutput(), 
-                5
-            ).Exec();
+            new Program(Console.OpenStandardInput(), Console.OpenStandardOutput(), 5).Exec();
         }
-
         public void Exec()
         {
             string word = WORDS[new Random().Next(WORDS.Length)];
@@ -55,7 +48,7 @@ namespace Hangman
                         break;
                     }
                     _out.WriteLine("Guess a letter: ");
-                    char chr = scanner.ReadLine().First();
+                    char chr = scanner.ReadLine().ElementAt(0);
                     bool hit = false;
                     for (int i = 0; i < word.Length; ++i)
                     {
