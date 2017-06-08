@@ -1,0 +1,73 @@
+﻿
+new GameEngine(
+		new Screen(
+			new GameState(
+				new GameLogic(
+					new CommandSource(
+						new Keyboard()
+					),
+					new GameRules(
+						new AllowedMistakeCount(5)
+					)
+				)
+			)
+		)
+).Play();
+
+
+new GameEngine(
+	new GameState(
+		new GameLogic(
+			new GameRules(
+				new AllowedMistakeCount(5)
+			)
+		)
+	),
+	mew Screen(),
+	new Keyboard()
+).Play();
+
+
+new Game(
+	new GameEngine(
+		new GameState(
+			new GameLogic(
+				new GameRules(
+					new AllowedMistakeCount(5)
+				)
+			)
+		),
+	),
+	mew Screen(),
+	new Keyboard()
+).Play();
+
+new Game(
+	new GameEngine(
+		new GameLogic(
+			new GameRules(
+				new AllowedMistakeCount(5)
+			)
+		),
+		new GameState(),
+	),
+	mew Screen(),
+	new Keyboard()
+).Play();
+
+
+new Game(
+	new GameEngine(
+		new GameLogic(
+			new GameRules(
+				new AllowedMistakeCount(5)
+			)
+		),
+		new GameCommands(
+			new GuessLetterCommand()
+		),
+		new GameState(),
+	),
+	mew Screen(),
+	new Keyboard()
+).Play();

@@ -14,16 +14,19 @@ namespace Hangman
             "neighborhood", "relationship", "mathematics",
             "university", "explanation"
         };
+
         public Program(Stream input, Stream output, int max)
         {
             this._input = input;
             this._output = output;
             this._max = max;
         }
+
         public static void Main(string[] args)
         {
             new Program(Console.OpenStandardInput(), Console.OpenStandardOutput(), 5).Exec();
         }
+
         public void Exec()
         {
             string word = WORDS[new Random().Next(WORDS.Length)];
