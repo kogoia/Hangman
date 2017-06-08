@@ -8,6 +8,6 @@ namespace Hangman.GameEngine.GameCommands
 {
     public interface IGameCommand
     {
-        IGameState Execute(IGameState state, IEnumerable<IGameRule> rules);
+        GameState.GameState Execute(IGameState state, IEnumerable<IGameRule> rules);
     }
 }

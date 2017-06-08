@@ -71,3 +71,25 @@ new Game(
 	mew Screen(),
 	new Keyboard()
 ).Play();
+
+
+
+new Game(
+	new GameEngine(
+		new GameLogic(
+			new GameRules(
+				new AllowedMistakeCount(5)
+			)
+		),
+		new GameCommands(
+			new GuessLetterCommand()
+		),
+		new GameState(
+			new ConceivedWord(
+				new Words()
+			)
+		),
+	),
+	mew Screen(),
+	new Keyboard()
+).Play();

@@ -2,9 +2,9 @@
 {
     public class GameStateHistory
     {
-        public GameState.GameState Step(int index)
+        public GameState.GuessedWord Step(int index)
         {
-            return new GameState.GameState();
+            return new GameState.GuessedWord();
         }
     }
 

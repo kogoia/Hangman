@@ -7,7 +7,7 @@ namespace Hangman.Periphery
 {
     public class Screen : IDisplay
     {
-        public IObserver<GameState> Target()
+        public IObserver<GuessedWord> Target()
         {
             throw new NotImplementedException();
         }

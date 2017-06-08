@@ -6,9 +6,9 @@ using Hangman.GameEngine.GameState;
 
 namespace Hangman.GameEngine.GameCommands
 {
-    class GuessLetterCommand : IGameCommand
+    public class GuessLetterCommand : IGameCommand
     {
-        public IGameState Execute(IGameState state, IEnumerable<IGameRule> rules)
+        public GameState.GameState Execute(IGameState state, IEnumerable<IGameRule> rules)
         {
             throw new NotImplementedException();
         }

@@ -8,6 +8,6 @@ namespace Hangman.GameEngine.GameLogic
 {
     public interface IGameLogic
     {
-        void Perfom(IGameCommand command);
+        GameState.GameState Perfom(IGameCommand command);
     }
 }

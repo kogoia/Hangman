@@ -7,7 +7,7 @@ using Hangman.Infrastructure;
 
 namespace Hangman
 {
-    public class Hangman : ISource<GameState>
+    public class Hangman : ISource<GuessedWord>
     {
         private readonly IGameEngine _engine;
 
@@ -16,7 +16,7 @@ namespace Hangman
             _engine = engine;
         }
 
-        public IObservable<GameState> Source()
+        public IObservable<GuessedWord> Source()
         {
             throw new NotImplementedException();
         }

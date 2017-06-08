@@ -1,5 +1,6 @@
 ﻿using System;
 using Hangman.GameEngine.GameLogic;
+using Hangman.GameEngine.GameState;
 using Hangman.Infrastructure;
 using Hangman.Periphery;
 
@@ -12,7 +13,7 @@ namespace Hangman.GameEngine
             
         }
 
-        public ITarget<GameState.GameState> Run(ISource<char> commandSource)
+        public ITarget<IGameState> Run(ISource<char> commandSource)
         {
             throw new NotImplementedException();
         }
