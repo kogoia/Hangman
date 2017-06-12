@@ -4,21 +4,41 @@ using System.Text;
 using Hangman.GameEngine;
 using Hangman.GameEngine.GameState;
 using Hangman.Infrastructure;
+using Hangman.Periphery;
+using System.Reactive.Linq;
 
 namespace Hangman
 {
-    public class Hangman : ISource<GuessedWord>
+    public class Hangman : IGame
     {
         private readonly IGameEngine _engine;
-
-        public Hangman(IGameEngine engine, )
+        private readonly ISensor<char> _keyboard;
+        private readonly IDisplay<IView> _screen;
+        public Hangman(IGameEngine engine, ISensor<char> keyboard, IDisplay<IView> screen)
         {
             _engine = engine;
         }
 
-        public IObservable<GuessedWord> Source()
+        public void Play()
         {
-            throw new NotImplementedException();
+            _engine
+                .Run(_keyboard)
+                .Select(gs => new GameStateView(gs))
+                .Subscribe(_screen);
         }
+
+        public static void Main(string[] args)
+        {
+            new Hangman(
+                new GameEngine.GameEngine(),
+                new Keyboard(
+                    Console.OpenStandardInput()
+                ),
+                new Screen(
+                    Console.OpenStandardOutput()
+                )
+            ).Play();
+        }
+
     }
 }

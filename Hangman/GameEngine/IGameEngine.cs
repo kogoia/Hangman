@@ -1,11 +1,12 @@
 ﻿using Hangman.GameEngine.GameState;
 using Hangman.Infrastructure;
 using Hangman.Periphery;
+using System;
 
 namespace Hangman.GameEngine
 {
     public interface IGameEngine
     {
-        ITarget<IGameState> Run(ISource<char> commandSource);
+        IObservable<IGameState> Run(ISensor<char> commandSource);
     }
 }

@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="System.Reactive" Version="4.0.0-preview00001" />
+    <PackageReference Include="System.Reactive.Core" Version="4.0.0-preview00001" />
+    <PackageReference Include="System.Reactive.Interfaces" Version="4.0.0-preview00001" />
+    <PackageReference Include="System.Reactive.Linq" Version="4.0.0-preview00001" />
+    <PackageReference Include="System.Reactive.PlatformServices" Version="4.0.0-preview00001" />
     <PackageReference Include="xunit" Version="2.3.0-beta2-build3683" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0-beta2-build3683" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta2-build1317" />

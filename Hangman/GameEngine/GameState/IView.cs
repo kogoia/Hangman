@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Hangman.GameEngine.GameState
 {
-    public interface IGameState
+    public interface IView
     {
-
-        IView AsView();
+        string View();
     }
 }

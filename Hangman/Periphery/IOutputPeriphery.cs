@@ -5,7 +5,7 @@ using Hangman.Infrastructure;
 
 namespace Hangman.Periphery
 {
-    public interface IOutputPeriphery<in TInput> : ITarget<TInput>, IPeriphery
+    public interface IOutputPeriphery<in TInput> : IObserver<TInput>, IPeriphery
     {
     }
 }

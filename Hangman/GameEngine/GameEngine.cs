@@ -13,7 +13,7 @@ namespace Hangman.GameEngine
             
         }
 
-        public ITarget<IGameState> Run(ISource<char> commandSource)
+        public IObservable<IGameState> Run(ISensor<char> commandSource)
         {
             throw new NotImplementedException();
         }

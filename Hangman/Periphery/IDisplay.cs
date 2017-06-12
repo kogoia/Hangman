@@ -2,7 +2,7 @@
 
 namespace Hangman.Periphery
 {
-    public interface IDisplay : IOutputPeriphery<GuessedWord>
+    public interface IDisplay<TInput> : IOutputPeriphery<TInput>
     {
     }
 }
