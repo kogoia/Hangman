@@ -1,48 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Reactive.Concurrency;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Threading;
-using static Hangman.Foo;
 
-namespace Hangman
+namespace Hangman.Old
 {
-    public class Keyboard : IObservable<string>
-    {
-        private readonly StreamReader _input;
-
-        public Keyboard(Stream input)
-            : this(new StreamReader(input)) {}
-        public Keyboard(StreamReader input)
-        {
-            _input = input;
-        }
-        public IDisposable Subscribe(IObserver<string> observer)
-        {
-            return Observable
-                .FromAsync(ct =>
-                {
-                    Output("FromAsync");
-                    return _input.ReadLineAsync();
-                })
-                .Repeat()
-                //.Publish()
-                //.RefCount()
-                .ObserveOn(Scheduler.CurrentThread)
-                .SubscribeOn(Scheduler.CurrentThread)
-                .Subscribe(observer);
-        }
-    }
-
-    public static class Foo
-    {
-        public static void Output(string str)
-        {
-            Console.WriteLine($"{str}, ThreadId: {Thread.CurrentThread.ManagedThreadId}");
-        }
-    }
     public class Program
     {
         private readonly Stream _input;
@@ -63,15 +24,6 @@ namespace Hangman
 
         public static void Main(string[] args)
         {
-            //Output("kogoia - Main");
-            //new Keyboard(Console.OpenStandardInput())
-            //    .Subscribe((ch) =>
-            //    {
-            //        Output($"{ch} - Subscribe");
-            //    });
-
-            //Thread.Sleep(12000);
-            //Output("Exit - Main");
             new Program(Console.OpenStandardInput(), Console.OpenStandardOutput(), 5).Exec();
         }
 
@@ -80,7 +32,7 @@ namespace Hangman
             string word = WORDS[new Random().Next(WORDS.Length)];
             bool[] visible = new bool[word.Length];
             int mistakes = 0;
-            using (StreamWriter _out = new StreamWriter(this._output) { AutoFlush = true })
+            using(StreamWriter _out = new StreamWriter(this._output) { AutoFlush = true })
             {
                 StreamReader scanner = new StreamReader(this._input);
                 bool done = true;
@@ -103,7 +55,7 @@ namespace Hangman
                     bool hit = false;
                     for (int i = 0; i < word.Length; ++i)
                     {
-                        if (word[i] == chr && !visible[i])
+                        if(word[i] == chr && !visible[i])
                         {
                             visible[i] = true;
                             hit = true;
@@ -122,9 +74,9 @@ namespace Hangman
                         ++mistakes;
                     }
                     _out.Write("The word: ");
-                    for (int i = 0; i < word.Length; ++i)
+                    for(int i = 0; i < word.Length; ++i)
                     {
-                        if (visible[i])
+                        if(visible[i])
                         {
                             _out.Write(word[i]);
                         }

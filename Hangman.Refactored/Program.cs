@@ -1,46 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading;
-using static Hangman.Foo;
+using static Hangman.Refactored.Foo;
 
-namespace Hangman
+namespace Hangman.Refactored
 {
-    public class Keyboard : IObservable<string>
+    public class GameState
     {
-        private readonly StreamReader _input;
 
-        public Keyboard(Stream input)
-            : this(new StreamReader(input)) {}
-        public Keyboard(StreamReader input)
+    }
+    public class HangmanGame : IObservable<string>
+    {
+        private readonly IObservable<string> _keyboard;
+        private readonly string _conceivedWord;
+
+        public HangmanGame(IObservable<string> keyboard, string conceivedWord)
         {
-            _input = input;
+            _keyboard = keyboard;
+            _conceivedWord = conceivedWord;
         }
         public IDisposable Subscribe(IObserver<string> observer)
         {
-            return Observable
-                .FromAsync(ct =>
-                {
-                    Output("FromAsync");
-                    return _input.ReadLineAsync();
-                })
-                .Repeat()
-                //.Publish()
-                //.RefCount()
-                .ObserveOn(Scheduler.CurrentThread)
-                .SubscribeOn(Scheduler.CurrentThread)
-                .Subscribe(observer);
-        }
-    }
-
-    public static class Foo
-    {
-        public static void Output(string str)
-        {
-            Console.WriteLine($"{str}, ThreadId: {Thread.CurrentThread.ManagedThreadId}");
+            var guessedSource = _keyboard.Select(str => _conceivedWord.Contains(str));
+            //var missedSource = _keyboard.Select(str => )
+            //_keyboard
+                
+            throw new NotImplementedException();
+            
         }
     }
     public class Program
@@ -63,16 +53,14 @@ namespace Hangman
 
         public static void Main(string[] args)
         {
-            //Output("kogoia - Main");
-            //new Keyboard(Console.OpenStandardInput())
-            //    .Subscribe((ch) =>
-            //    {
-            //        Output($"{ch} - Subscribe");
-            //    });
+            new Screen(
+                new Keyboard()
+            )
+            .Power();
 
-            //Thread.Sleep(12000);
-            //Output("Exit - Main");
-            new Program(Console.OpenStandardInput(), Console.OpenStandardOutput(), 5).Exec();
+            Thread.Sleep(12000);
+            Output("Exit - Main");
+            //new Program(Console.OpenStandardInput(), Console.OpenStandardOutput(), 5).Exec();
         }
 
         public void Exec()
